@@ -4,7 +4,6 @@
     <div class="pagina-inicial">
         <header class="cabecalho">
             <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo da Alura Space" />
-            {% include 'partials/_alertas.html' %}
             <div class="cabecalho__busca">
                 <div class="busca__fundo">
                     <form action="{% url 'buscar' %}">
@@ -19,10 +18,10 @@
         <main class="principal">
             <section class="menu-lateral">
                 <nav class="menu-lateral__navegacao">
-                    <a href="{% url 'index' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Home</a>
-                    <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> login</a>
-                    <a href="{% url 'cadastro' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> cadastro</a>
-                    <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> logout</a>
+                    <a href="#"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Home</a>
+                    <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Login</a>
+                    <a href="{% url 'cadastro'%}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Cadastrar</a>
+                    <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Logout</a>
                 </nav>
             </section>
             <section class="conteudo">
@@ -47,27 +46,27 @@
                         {% for fotografia in cards %}
                         <li class="card">
                             <a href="{% url 'imagem' fotografia.id %}">
-                            {% if fotografia.foto == "" or fotografia.foto == null %}
-                                <img class="card__imagem" src="{% static '/assets/imagens/galeria/not-found.png'%}" alt="foto">
+                            {% if fotografia.foto == "" or  fotografia.foto == null %}
+                                <img class="card__imagem" src="{% static '/assets/imagens/galeria/not_found.png'%} {{fotografia.foto}}" alt="foto">
                             {% else %}
-                                <img class="card__imagem" src="{{ fotografia.foto.url }}" alt="foto">
+                                <img class="card__imagem" src="{{fotografia.foto.url}}" alt="foto">
                             {% endif %}
                             </a>
-                            <span class="card__tag">Estrelas</span>
-                            <div class="card__info">
-                                <p class="card__titulo">{{fotografia.nome}}</p>
-                                <div class="card__texto">
-                                    <p class="card__descricao">{{fotografia.legenda}}</p>
-                                    <span>
-                                        <img src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
-                                    </span>
-                                </div>
+                                <span class="card__tag">Estrelas</span>
+                                <div class="card__info">
+                                    <p class="card__titulo">{{fotografia.nome}}</p>
+                                    <div class="card__texto">
+                                        <p class="card__descricao">{{fotografia.legenda}}</p>
+                                        <span>
+                                            <img src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
+                                        </span>
+                                    </div>
                                 </div>
                             </li>
                         {% endfor %}
                         {% else %}
-                            <div class="imagem_texto">
-                                <p>Fotografias não encontradas</p>
+                            <div class="imagem_texto" >
+                                <p >Fotografias não encontradas</p>
                             </div>
                         {% endif %}
                         </ul>
